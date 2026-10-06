@@ -39,8 +39,6 @@ Create a `.env` file in the project root, next to `app.py`. Add only the provide
 
 ```dotenv
 NVIDIA_API_KEY=your-nvidia-api-key
-GEMINI_API_KEY=your-gemini-api-key
-GEMINI_MODEL=gemini-3.8-flash
 ```
 
 `GEMINI_API_KEY` and `NVIDIA_API_KEY` are optional individually. Keep real keys private; `.env` is excluded from Git. Restart the app after changing `.env` so the new values are loaded.
