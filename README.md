@@ -43,6 +43,16 @@ NVIDIA_API_KEY=your-nvidia-api-key
 
 `GEMINI_API_KEY` and `NVIDIA_API_KEY` are optional individually. Keep real keys private; `.env` is excluded from Git. Restart the app after changing `.env` so the new values are loaded.
 
+For Streamlit Community Cloud, deploy `app.py` from this GitHub repository and add any provider keys under the app's **Settings > Secrets** as TOML:
+
+```toml
+GEMINI_API_KEY = "your-gemini-api-key"
+NVIDIA_API_KEY = "your-nvidia-api-key"
+GEMINI_MODEL = "gemini-3.8-flash"
+```
+
+Only add the keys for providers you use. The app can also deploy without keys and use Local extraction.
+
 ## Run
 
 From the project root, with the virtual environment active:

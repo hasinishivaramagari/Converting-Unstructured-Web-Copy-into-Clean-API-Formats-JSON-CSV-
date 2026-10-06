@@ -6,6 +6,7 @@ import re
 
 import requests
 import streamlit as st
+from streamlit.errors import StreamlitSecretNotFoundError
 
 try:
     from dotenv import load_dotenv
@@ -14,9 +15,21 @@ except ModuleNotFoundError:
         return False
 
 load_dotenv()
-gemini_api_key = os.getenv("GEMINI_API_KEY")
-nvidia_api_key = os.getenv("NVIDIA_API_KEY")
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+
+
+def get_setting(name, default=None):
+    value = os.getenv(name)
+    if value is not None:
+        return value
+    try:
+        return st.secrets.get(name, default)
+    except StreamlitSecretNotFoundError:
+        return default
+
+
+nvidia_api_key = get_setting("NVIDIA_API_KEY")
+gemini_api_key = get_setting("GEMINI_API_KEY")
+GEMINI_MODEL = get_setting("GEMINI_MODEL", "gemini-3.8-flash")
 NVIDIA_MODEL = "nvidia/nemotron-3.5-lightning-30b-a3b"
 
 DEFAULT_FIELDS = "title, description, price, url, category, features"
