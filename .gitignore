@@ -1,5 +1,7 @@
 venv/
 __pycache__/
 *.pyc
-.env
 .langgraph_api/
+.env
+.env.*
+!.env.example
